@@ -18,14 +18,11 @@
   <link rel="icon" href="icon.png">
   <link rel="apple-touch-icon" href="icon.png">
 
-  <!-- IMPORTANTE: reemplaza TU_URL_COMPLETA_AQUI (dos lugares abajo) por
-       la URL real de esta pagina una vez publicada en GitHub Pages, algo
-       como https://tu-usuario.github.io/casave/ -->
   <meta property="og:title" content="Casave">
   <meta property="og:description" content="Registra cajas de donacion, facil y rapido.">
-  <meta property="og:image" content="https://casaveapp.com">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:image" content="https://casaveapp.com">
+  <meta property="og:image" content="https://casaveapp.com/social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://casaveapp.com/social-preview.png">
 
   <style>
     * { box-sizing: border-box; }
@@ -59,12 +56,20 @@
     <h1>Casave</h1>
     <p class="subtitle">Inventario de donaciones para Venezuela</p>
 
-    <!-- IMPORTANTE: reemplaza TU_URL_DE_LA_APP_AQUI por la URL de tu app
-         de Apps Script, terminada en ?app=1 (la que copiaste al hacer
-         "Implementar" en Apps Script). -->
     <a class="cta" href="https://script.google.com/macros/s/AKfycbwQfBfUZ3GyTpFZGocet2vSNggIHhDXgD0bLcSDlUaXZdu1QkcV1eRmvnECuCDfBc_q/exec?app=1" target="_top">Abrir la app &rarr;</a>
 
     <p class="note"><strong>Primera vez aqui:</strong> antes de tocar el boton, agrega esta pagina a tu pantalla de inicio (icono de compartir &#x2191; en iPhone, o los tres puntos en Android &rarr; "Agregar a pantalla de inicio"). Asi la proxima vez abres la app con un toque, con el icono correcto.</p>
   </div>
+  <script>
+    // Si esta pagina se abrio como casaveapp.com/?centro=NombreDelCentro
+    // (para darle a un grupo un link fijo a su propio centro), este
+    // script pasa ese mismo parametro al link real de la app de Apps
+    // Script, agregandolo al boton "Abrir la app" antes de que lo toquen.
+    var centro = new URLSearchParams(window.location.search).get('centro');
+    if (centro) {
+      var cta = document.querySelector('.cta');
+      cta.href = cta.href + '&centro=' + encodeURIComponent(centro);
+    }
+  </script>
 </body>
 </html>
