@@ -1,15 +1,202 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Casave</title>
-<script>
-  window.location.replace(
-    "https://script.google.com/macros/s/AKfycbwQfBfUZ3GyTpFZGocet2vSNggIHhDXgD0bLcSDlUaXZdu1QkcV1eRmvnECuCDfBc_q/exec" + window.location.search
-  );
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Casave</title>
+  <meta name="apple-mobile-web-app-title" content="Casave">
+  <meta name="application-name" content="Casave">
+  <meta name="theme-color" content="#D97B4B">
+  <link rel="icon" href="https://lh3.googleusercontent.com/d/1v721DfqsJZAZVQyxowLk8GHLUsocvsJz=w512-h512">
+  <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/1v721DfqsJZAZVQyxowLk8GHLUsocvsJz=w512-h512">
+  <!-- Banner que aparece al compartir el link (WhatsApp, etc). -->
+  <meta property="og:title" content="Casave">
+  <meta property="og:description" content="Registra cajas de donacion, facil y rapido.">
+  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1v721DfqsJZAZVQyxowLk8GHLUsocvsJz=w512-h512">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1v721DfqsJZAZVQyxowLk8GHLUsocvsJz=w512-h512">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      margin: 0; padding: 0; color: #1a1a1a; background: #fafaf8;
+    }
+    .wrap { max-width: 520px; margin: 0 auto; padding: 28px 20px 60px; }
+    .hero { text-align: center; margin-bottom: 28px; }
+    .icon {
+      width: 84px; height: 84px; border-radius: 20px; margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: #D97B4B; box-shadow: 0 6px 20px rgba(217,123,75,0.35);
+    }
+    .icon svg { width: 46px; height: 46px; }
+    h1 { font-size: 26px; margin: 0 0 4px; color: #D97B4B; }
+    .subtitle { color: #666; font-size: 15px; margin: 0; }
+    .cta {
+      display: block; text-align: center; background: #D97B4B; color: #fff;
+      font-weight: 700; font-size: 17px; padding: 16px; border-radius: 14px;
+      text-decoration: none; margin: 22px 0 8px; box-shadow: 0 8px 20px rgba(217,123,75,0.3);
+    }
+    .cta:active { transform: scale(0.98); }
+    .cta-note { text-align: center; color: #888; font-size: 12.5px; margin: 0 0 30px; }
+    .card {
+      background: #fff; border: 1px solid #ececea; border-radius: 16px;
+      padding: 18px 18px 6px; margin-bottom: 18px;
+    }
+    .card h2 { font-size: 16px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+    .badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: #FBE9E0; color: #D97B4B;
+      font-size: 12px; font-weight: 700; flex-shrink: 0;
+    }
+    .tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+    .tabbtn {
+      flex: 1; padding: 9px; border-radius: 10px; border: 1px solid #ddd; background: #fff;
+      font-size: 13.5px; font-weight: 600; color: #555; cursor: pointer;
+    }
+    .tabbtn.active { background: #D97B4B; color: #fff; border-color: #D97B4B; }
+    .tabpanel { display: none; }
+    .tabpanel.active { display: block; }
+    ol, ul { margin: 0 0 12px; padding-left: 20px; }
+    li { margin-bottom: 9px; font-size: 14.5px; line-height: 1.45; }
+    p { font-size: 14.5px; line-height: 1.5; color: #333; }
+    .steps-compact li { margin-bottom: 11px; }
+    .faq-q {
+      font-weight: 700; font-size: 14.5px; margin: 0 0 4px; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-a { font-size: 14px; color: #555; margin: 0 0 14px; display: none; line-height: 1.5; }
+    .faq-a.open { display: block; }
+    .chevron { transition: transform .15s; color: #D97B4B; }
+    .chevron.open { transform: rotate(180deg); }
+    .code-chip {
+      display: inline-block; background: #FBE9E0; color: #D97B4B; font-weight: 700;
+      padding: 3px 9px; border-radius: 8px; font-size: 13px;
+    }
+    footer { text-align: center; margin-top: 24px; }
+    footer a { color: #D97B4B; text-decoration: none; font-weight: 600; }
+    footer p { color: #999; font-size: 13px; }
+  </style>
 </head>
 <body>
-  <p>Redirigiendo a Casave...</p>
+  <div class="wrap">
+    <div class="hero">
+      <div class="icon">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 38 L34 20 M80 38 L66 20 M20 38 L50 30 L80 38" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="20" y="38" width="60" height="34" stroke="white" stroke-width="6"/>
+          <line x1="50" y1="38" x2="50" y2="72" stroke="white" stroke-width="4"/>
+        </svg>
+      </div>
+      <h1>Casave</h1>
+      <p class="subtitle">Inventario de donaciones para Venezuela</p>
+    </div>
+
+    <a class="cta" href="https://script.google.com/macros/s/AKfycbwQfBfUZ3GyTpFZGocet2vSNggIHhDXgD0bLcSDlUaXZdu1QkcV1eRmvnECuCDfBc_q/exec?app=1">Abrir la app &rarr;</a>
+    <p class="cta-note">Se abre en tu navegador &mdash; no necesitas instalar nada de una tienda de apps.</p>
+
+    <div class="card">
+      <h2><span class="badge">1</span> Agrega la app a tu pantalla de inicio</h2>
+      <p>Hazlo una sola vez, después de tocar &ldquo;Abrir la app&rdquo; arriba, para tenerla como cualquier otra app en tu celular.</p>
+      <div class="tabs">
+        <button class="tabbtn active" onclick="showTab('ios', this)">iPhone</button>
+        <button class="tabbtn" onclick="showTab('android', this)">Android</button>
+      </div>
+      <div id="tab-ios" class="tabpanel active">
+        <ol>
+          <li>Toca el ícono de compartir <strong>&#x2191;</strong> (cuadrado con flecha), abajo al centro en Safari.</li>
+          <li>Desliza y elige <strong>&ldquo;Agregar a pantalla de inicio&rdquo;</strong>.</li>
+          <li>Confirma tocando <strong>&ldquo;Agregar&rdquo;</strong> arriba a la derecha.</li>
+        </ol>
+      </div>
+      <div id="tab-android" class="tabpanel">
+        <ol>
+          <li>Toca los <strong>tres puntitos</strong> arriba a la derecha de Chrome.</li>
+          <li>Elige <strong>&ldquo;Agregar a pantalla de inicio&rdquo;</strong> o <strong>&ldquo;Instalar app&rdquo;</strong>.</li>
+          <li>Confirma tocando <strong>&ldquo;Agregar&rdquo;</strong> o <strong>&ldquo;Instalar&rdquo;</strong>.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">2</span> Cómo armar una caja (antes de registrarla)</h2>
+      <p>Empacar todas las cajas con el mismo criterio ayuda a que se apilen bien y a que se sepa qué hay adentro sin abrirlas:</p>
+      <ul>
+        <li><strong>Clasifica primero:</strong> separa las donaciones por tipo antes de llenar cajas.</li>
+        <li><strong>Sin vencidos ni dañados:</strong> revisa fechas antes de empacar comida o medicamentos.</li>
+        <li><strong>Una categoría por caja</strong> cuando se pueda &mdash; si mezclas, la caja se clasifica según la categoría con MÁS CANTIDAD.</li>
+        <li><strong>Máximo 15 kg (33 lb)</strong> por caja, para que se pueda levantar sola/o y no aplaste las de abajo.</li>
+        <li><strong>Tamaño parejo</strong> entre cajas (idealmente una caja mediana de mudanza) para que quepan bien en la paleta.</li>
+        <li><strong>Frágiles y líquidos al centro</strong> de la caja, rodeados de ropa o algo suave.</li>
+        <li><strong>Sella todas las uniones</strong> con cinta, no solo la tapa de arriba.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">3</span> Registra una caja en 4 pasos</h2>
+      <ol class="steps-compact">
+        <li>Escribe tu nombre y el nombre de tu centro de acopio (siempre igual, ej. &ldquo;San Juan&rdquo;). La primera vez que armes una caja, la app te va a pedir el código secreto del centro (ver preguntas frecuentes).</li>
+        <li>Elige la paleta y la categoría de la caja &mdash; Comida, Medicamentos, Rescate, Higiene, Ropa, Mascotas o Bebé. Si esa paleta no es de 16 cajas, toca &ldquo;Cambiar cantidad de cajas de esta paleta&rdquo; y pon el número correcto.</li>
+        <li>Escribe cada producto con su cantidad y toca &ldquo;Generar código y guardar caja&rdquo;. Recibirás un código como <span class="code-chip">SANJUAN-P1-12-M</span>.</li>
+        <li>Toca &ldquo;Imprimir etiqueta&rdquo; (incluye un código QR) y pégala en la caja &mdash; arriba y, si puedes, en un costado también.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">4</span> Corrige una caja tú mismo/a</h2>
+      <p>No hace falta avisarle a nadie para arreglar un error &mdash; toca &ldquo;Ver cajas de esta paleta&rdquo; y busca la caja:</p>
+      <ul>
+        <li><strong>Editar:</strong> cambia productos, cantidades o categoría de una caja ya guardada.</li>
+        <li><strong>Mover:</strong> si una caja quedó en la paleta equivocada, la manda a la paleta correcta (le genera un código nuevo &mdash; reimprime la etiqueta después).</li>
+        <li><strong>Imprimir:</strong> vuelve a imprimir la etiqueta de una caja ya registrada, por si se dañó o se perdió.</li>
+        <li><strong>Eliminar:</strong> solo aparece en la última caja que registraste en esa paleta (por ejemplo si la duplicaste sin querer). Si la caja que quieres borrar no es la más reciente, dentro de &ldquo;Editar&rdquo; usa &ldquo;cambiar código&rdquo; para anularla en vez de intentar eliminarla.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">5</span> Buscar, ver resúmenes y exportar</h2>
+      <ul>
+        <li><strong>Buscar un producto:</strong> escribe parte del nombre para ver en qué cajas y paletas aparece.</li>
+        <li><strong>Ver resumen</strong> de tu centro o de todos los centros juntos, en vivo.</li>
+        <li><strong>Descargar CSV</strong> con todo el detalle, para abrir en Excel o Google Sheets.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">?</span> Preguntas frecuentes</h2>
+      <div class="faq">
+        <div class="faq-q" onclick="toggleFaq(this)">¿Qué es el código secreto del centro? <span class="chevron">&#9660;</span></div>
+        <div class="faq-a">Sirve SOLO para armar, editar, mover o eliminar cajas &mdash; nunca hace falta para ver el progreso o el detalle de las cajas, eso es público para cualquiera con el link. Si eres quien crea el centro, la app te lo muestra una sola vez (guárdalo); si tu centro ya existe, pídeselo a quien lo creó.</div>
+        <div class="faq-q" onclick="toggleFaq(this)">¿Necesito internet? <span class="chevron">&#9660;</span></div>
+        <div class="faq-a">Si no hay señal o wifi al momento de guardar, la app guarda la caja en tu teléfono y la manda sola en cuanto vuelva la conexión &mdash; vas a ver un aviso amarillo mientras tenga cajas pendientes. No cierres la pestaña hasta que desaparezca.</div>
+        <div class="faq-q" onclick="toggleFaq(this)">¿Me equivoqué en un producto, qué hago? <span class="chevron">&#9660;</span></div>
+        <div class="faq-a">Tócalo tú mismo/a: toca &ldquo;Ver cajas de esta paleta&rdquo;, busca la caja y usa &ldquo;Editar&rdquo;. No hace falta avisarle a nadie ni esperar a que alguien más lo corrija.</div>
+        <div class="faq-q" onclick="toggleFaq(this)">Toqué &ldquo;Guardar&rdquo; y no estoy seguro/a si se guardó, ¿qué hago? <span class="chevron">&#9660;</span></div>
+        <div class="faq-a">Antes de volver a registrar la misma caja, toca &ldquo;Ver cajas de esta paleta&rdquo; y revisa si ya aparece con su código. Si ya está ahí, no la registres de nuevo &mdash; evita cajas duplicadas.</div>
+        <div class="faq-q" onclick="toggleFaq(this)">¿Varios voluntarios pueden usarla a la vez? <span class="chevron">&#9660;</span></div>
+        <div class="faq-a">Sí, sin problema, incluso en centros distintos &mdash; el código de cada caja nunca se repite.</div>
+        <div class="faq-q" onclick="toggleFaq(this)">¿Qué categoría le pongo a una caja con productos mezclados? <span class="chevron">&#9660;</span></div>
+        <div class="faq-a">La de la categoría con MÁS CANTIDAD dentro de esa caja.</div>
+      </div>
+    </div>
+
+    <footer>
+      <p>¿Dudas? Escribe a <a href="mailto:Leo@tarafoundation.org">Leo@tarafoundation.org</a></p>
+    </footer>
+  </div>
+
+  <script>
+    function showTab(id, btn) {
+      document.querySelectorAll('.tabpanel').forEach(function (el) { el.classList.remove('active'); });
+      document.querySelectorAll('.tabbtn').forEach(function (el) { el.classList.remove('active'); });
+      document.getElementById('tab-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+    function toggleFaq(el) {
+      var answer = el.nextElementSibling;
+      var chevron = el.querySelector('.chevron');
+      answer.classList.toggle('open');
+      chevron.classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
