@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arma y registra tu caja — Casave</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    margin: 0; padding: 0; color: #1a1a1a; background: #fafaf8;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 28px 20px 60px; }
+  .hero { text-align: center; margin-bottom: 30px; }
+  .hero .badge {
+    width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 12px;
+    background: #D97B4B; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 20px rgba(217,123,75,0.35);
+  }
+  .hero .badge svg { width: 40px; height: 40px; }
+  .hero h1 { font-size: 28px; margin: 0 0 4px; color: #D97B4B; }
+  .hero p { color: #666; font-size: 15px; margin: 0; }
+  h2.section-title {
+    font-size: 15px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #D97B4B; font-weight: 700; margin: 40px 0 16px; text-align: center;
+  }
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: #fff; border: 1px solid #ececea; border-radius: 16px;
+    padding: 18px; cursor: pointer; transition: box-shadow .15s;
+  }
+  .card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+  .card .icon-badge {
+    width: 44px; height: 44px; border-radius: 12px; background: #FBE9E0;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 12px;
+  }
+  .card .icon-badge svg { width: 24px; height: 24px; color: #D97B4B; }
+  .card .step-num {
+    display: inline-block; font-size: 11px; font-weight: 700; color: #D97B4B;
+    background: #FBE9E0; border-radius: 6px; padding: 1px 7px; margin-bottom: 6px;
+  }
+  .card h3 { font-size: 15.5px; margin: 0 0 4px; line-height: 1.3; }
+  .card .caption { font-size: 13px; color: #777; margin: 0; line-height: 1.4; }
+  .card .detail {
+    display: none; font-size: 13.5px; color: #444; margin: 10px 0 0;
+    padding-top: 10px; border-top: 1px solid #f0f0ee; line-height: 1.5;
+  }
+  .card.open .detail { display: block; }
+  .card .chevron {
+    float: right; color: #ccc; font-size: 12px; transition: transform .15s;
+  }
+  .card.open .chevron { transform: rotate(180deg); color: #D97B4B; }
+
+  .faqstrip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px; margin-top: 14px;
+  }
+  .faqcard {
+    background: #fff; border: 1px solid #ececea; border-radius: 14px;
+    padding: 14px; text-align: center; cursor: pointer;
+  }
+  .faqcard .icon-badge {
+    width: 36px; height: 36px; border-radius: 10px; background: #FBE9E0;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;
+  }
+  .faqcard .icon-badge svg { width: 20px; height: 20px; color: #D97B4B; }
+  .faqcard h4 { font-size: 13px; margin: 0; }
+  .faqcard .detail {
+    display: none; font-size: 12.5px; color: #666; margin-top: 8px; line-height: 1.4; text-align: left;
+  }
+  .faqcard.open .detail { display: block; }
+
+  footer { text-align: center; margin-top: 40px; }
+  footer a { color: #D97B4B; text-decoration: none; font-weight: 600; }
+  footer p { color: #999; font-size: 13px; margin: 4px 0; }
+  .toggle-all {
+    text-align: center; margin: 6px 0 0; color: #D97B4B; font-weight: 600;
+    font-size: 13.5px; cursor: pointer; text-decoration: underline;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .card, .faqcard { break-inside: avoid; box-shadow: none !important; }
+    .card .detail, .faqcard .detail { display: block !important; }
+    .card .chevron, .toggle-all { display: none !important; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="badge">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 38 L34 20 M80 38 L66 20 M20 38 L50 30 L80 38" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="20" y="38" width="60" height="34" stroke="white" stroke-width="7"/>
+        <line x1="50" y1="38" x2="50" y2="72" stroke="white" stroke-width="5"/>
+      </svg>
+    </div>
+    <h1>Arma y registra tu caja</h1>
+    <p>Toca cada tarjeta para ver el detalle &mdash; o imprime esta página y ya sale todo.</p>
+    <p class="toggle-all" onclick="toggleAll()">Abrir todas las tarjetas</p>
+  </div>
+
+
+  <h2 class="section-title">Cómo armar la caja</h2>
+  <div class="grid">
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+      <span class="step-num">1</span>
+      <h3>Clasifica primero</h3>
+      <p class="caption">Separa por tipo antes de empacar.</p>
+      <p class="detail">Comida, Medicamentos, Rescate, Higiene, Ropa, Mascotas y Bebé, cada uno aparte, antes de empezar a llenar cajas.</p>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2.5" x2="8" y2="6"/><line x1="16" y1="2.5" x2="16" y2="6"/><path d="M8 14.5l2.2 2.2L16 11"/></svg></div>
+      <span class="step-num">2</span>
+      <h3>Revisa fechas</h3>
+      <p class="caption">Sin vencidos ni dañados.</p>
+      <p class="detail">No empaques comida ni medicamentos vencidos, abiertos o dañados.</p>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4.5 8 4.5-8 4.5-8-4.5z"/><path d="M4 8v9l8 4.5 8-4.5V8"/><line x1="12" y1="12.5" x2="12" y2="21.5"/></svg></div>
+      <span class="step-num">3</span>
+      <h3>Una categoría por caja</h3>
+      <p class="caption">Si mezclas, manda la mayoría.</p>
+      <p class="detail">Si sobran pocas unidades de otra categoría, se pueden mezclar &mdash; la caja se clasifica según la categoría con MÁS CANTIDAD.</p>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="19"/><line x1="4" y1="6" x2="20" y2="6"/><path d="M4 6l-2.5 6a2.5 3 0 0 0 5 0L4 6z"/><path d="M20 6l-2.5 6a2.5 3 0 0 0 5 0L20 6z"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
+      <span class="step-num">4</span>
+      <h3>Máximo 15 kg</h3>
+      <p class="caption">33 lb por caja.</p>
+      <p class="detail">Para que cualquier voluntario la levante sola/o sin lastimarse, y no aplaste las cajas de abajo al apilar.</p>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="1.5"/><line x1="6" y1="8" x2="6" y2="11.5"/><line x1="10" y1="8" x2="10" y2="11.5"/><line x1="14" y1="8" x2="14" y2="11.5"/><line x1="18" y1="8" x2="18" y2="11.5"/></svg></div>
+      <span class="step-num">5</span>
+      <h3>Tamaño parejo</h3>
+      <p class="caption">Cajas similares entre sí.</p>
+      <p class="detail">Idealmente una caja mediana de mudanza, para que quepan parejas en la paleta.</p>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1.5 8a4.5 4.5 0 0 1-9 0L6 3z"/><line x1="12" y1="15.5" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg></div>
+      <span class="step-num">6</span>
+      <h3>Frágiles al centro</h3>
+      <p class="caption">Rodeados de ropa o algo suave.</p>
+      <p class="detail">Vidrio, latas o líquidos van en el centro de la caja, nunca pegados a las paredes o esquinas.</p>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5"/><line x1="4" y1="9" x2="20" y2="9" stroke-dasharray="3 2"/><line x1="9" y1="4" x2="9" y2="20" stroke-dasharray="3 2"/></svg></div>
+      <span class="step-num">7</span>
+      <h3>Sella todo</h3>
+      <p class="caption">Cinta en todas las uniones.</p>
+      <p class="detail">No solo la tapa de arriba &mdash; en forma de "H" arriba y abajo es lo más resistente.</p>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">Cómo registrarla en Casave</h2>
+  <div class="grid">
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5v-7z" fill="currentColor" stroke="none"/></svg></div>
+      <span class="step-num">1</span>
+      <h3>Abre casaveapp.com</h3>
+      <p class="caption">Agrégala a tu pantalla de inicio.</p>
+      <p class="detail">Una sola vez: ícono de compartir (iPhone) o los tres puntos (Android) &rarr; "Agregar a pantalla de inicio".</p>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.4" fill="currentColor" stroke="none"/></svg></div>
+      <span class="step-num">2</span>
+      <h3>Código del centro</h3>
+      <p class="caption">Solo hace falta para armar cajas.</p>
+      <p class="detail">Pídeselo a quien creó tu centro. Nunca hace falta para ver el progreso o el detalle de las cajas.</p>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10.3 9.5l3.4-2 3.4 2-3.4 2-3.4-2z" transform="translate(-2.5,1)"/></svg></div>
+      <span class="step-num">3</span>
+      <h3>Llena y guarda</h3>
+      <p class="caption">Nombre, paleta, categoría, productos.</p>
+      <p class="detail">Toca "Generar código y guardar caja" &mdash; recibes un código único, ej. SANJUAN-P1-12-M.</p>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="chevron">&#9660;</span>
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13.5V4h-9.5L3 11.5 12.5 21 20 13.5z"/><circle cx="14.5" cy="8.5" r="1.6"/></svg></div>
+      <span class="step-num">4</span>
+      <h3>Etiqueta y paleta</h3>
+      <p class="caption">Imprime, pega, coloca.</p>
+      <p class="detail">Imprime la etiqueta (con QR), pégala arriba y en un costado de la caja, y colócala en su paleta.</p>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">Preguntas rápidas</h2>
+  <div class="faqstrip">
+    <div class="faqcard" onclick="toggle(this)">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9a13 13 0 0 1 6.5-3"/><path d="M17.5 9a13 13 0 0 1 1.9 1.3"/><path d="M8.3 12.8a8 8 0 0 1 4.4-1.6"/><path d="M15 13a8 8 0 0 1 1.6 1.2"/><path d="M11 16.5a3.5 3.5 0 0 1 2.4.9"/><circle cx="12" cy="19.5" r="1" fill="currentColor" stroke="none"/><line x1="2.5" y1="2.5" x2="21.5" y2="21.5"/></svg></div>
+      <h4>¿Sin señal?</h4>
+      <p class="detail">La app guarda la caja en tu teléfono y la manda sola en cuanto vuelva la conexión.</p>
+    </div>
+    <div class="faqcard" onclick="toggle(this)">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="7"/><line x1="15.8" y1="15.8" x2="21" y2="21"/></svg></div>
+      <h4>Buscar producto</h4>
+      <p class="detail">Escribe parte del nombre para ver en qué cajas y paletas aparece.</p>
+    </div>
+    <div class="faqcard" onclick="toggle(this)">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4 11.5-11.5a2.1 2.1 0 0 1 3 3L8 19l-4 1z"/><line x1="13.5" y1="6" x2="18" y2="10.5"/></svg></div>
+      <h4>¿Te equivocaste?</h4>
+      <p class="detail">"Ver cajas de esta paleta" &rarr; "Editar". No hace falta avisarle a nadie.</p>
+    </div>
+    <div class="faqcard" onclick="toggle(this)">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="7" rx="1"/><rect x="14" y="4" width="7" height="7" rx="1"/><line x1="2" y1="15" x2="22" y2="15"/><line x1="2" y1="19" x2="22" y2="19"/><line x1="5" y1="13" x2="5" y2="21"/><line x1="19" y1="13" x2="19" y2="21"/></svg></div>
+      <h4>Paleta llena</h4>
+      <p class="detail">La app avanza sola a la siguiente paleta al llegar a la capacidad.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p><a href="https://casaveapp.com">Ver instrucciones completas</a> &middot; <a href="mailto:leo@casaveapp.com">leo@casaveapp.com</a></p>
+    <p>&copy; 2026 Leo Saavedra. Todos los derechos reservados.</p>
+  </footer>
+
+</div>
+<script>
+  function toggle(el) { el.classList.toggle('open'); }
+  function toggleAll() {
+    var cards = document.querySelectorAll('.card, .faqcard');
+    var anyClosed = Array.prototype.some.call(cards, function (c) { return !c.classList.contains('open'); });
+    cards.forEach(function (c) { c.classList.toggle('open', anyClosed); });
+    document.querySelector('.toggle-all').textContent = anyClosed ? 'Cerrar todas las tarjetas' : 'Abrir todas las tarjetas';
+  }
+</script>
+</body>
+</html>
