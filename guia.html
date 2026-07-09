@@ -80,12 +80,20 @@
     text-align: center; margin: 6px 0 0; color: #D97B4B; font-weight: 600;
     font-size: 13.5px; cursor: pointer; text-decoration: underline;
   }
+  .cta {
+    display: block; text-align: center; background: #D97B4B; color: #fff;
+    font-weight: 700; font-size: 17px; padding: 15px; border-radius: 14px;
+    text-decoration: none; margin: 6px 0 18px; box-shadow: 0 8px 20px rgba(217,123,75,0.3);
+    max-width: 360px; margin-left: auto; margin-right: auto;
+  }
+  .cta:active { transform: scale(0.98); }
+  .cta-bottom { margin-top: 34px; }
 
   @media print {
     body { background: #fff; }
     .card, .faqcard { break-inside: avoid; box-shadow: none !important; }
     .card .detail, .faqcard .detail { display: block !important; }
-    .card .chevron, .toggle-all { display: none !important; }
+    .card .chevron, .toggle-all, .cta { display: none !important; }
     .grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
@@ -106,6 +114,7 @@
     <p class="toggle-all" onclick="toggleAll()">Abrir todas las tarjetas</p>
   </div>
 
+  <a class="cta" href="https://script.google.com/macros/s/AKfycbwQfBfUZ3GyTpFZGocet2vSNggIHhDXgD0bLcSDlUaXZdu1QkcV1eRmvnECuCDfBc_q/exec?app=1">Abrir la app &rarr;</a>
 
   <h2 class="section-title">Cómo armar la caja</h2>
   <div class="grid">
@@ -239,6 +248,8 @@
       <p class="detail">La app avanza sola a la siguiente paleta al llegar a la capacidad.</p>
     </div>
   </div>
+
+  <a class="cta cta-bottom" href="https://script.google.com/macros/s/AKfycbwQfBfUZ3GyTpFZGocet2vSNggIHhDXgD0bLcSDlUaXZdu1QkcV1eRmvnECuCDfBc_q/exec?app=1">Abrir la app &rarr;</a>
 
   <footer>
     <p><a href="https://casaveapp.com">Ver instrucciones completas</a> &middot; <a href="mailto:leo@casaveapp.com">leo@casaveapp.com</a></p>
