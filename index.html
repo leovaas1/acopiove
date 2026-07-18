@@ -152,18 +152,18 @@
       <h2><span class="badge">3</span> Registra una caja en 4 pasos</h2>
       <ol class="steps-compact">
         <li>Escribe tu nombre y el nombre de tu centro de acopio (siempre igual, ej. &ldquo;San Juan&rdquo;). La primera vez que armes una caja, la app te va a pedir el código secreto del centro (ver preguntas frecuentes).</li>
-        <li>Elige la paleta y la categoría de la caja &mdash; Comida, Medicamentos, Rescate, Higiene, Ropa, Mascotas o Bebé. Si esa paleta no es de 16 cajas, toca &ldquo;Cambiar cantidad de cajas de esta paleta&rdquo; y pon el número correcto.</li>
-        <li>Escribe cada producto con su cantidad y toca &ldquo;Generar código y guardar caja&rdquo;. Recibirás un código como <span class="code-chip">SANJUAN-P1-12-M</span>.</li>
-        <li>Toca &ldquo;Imprimir etiqueta&rdquo; (incluye un código QR) y pégala en la caja &mdash; arriba y, si puedes, en un costado también.</li>
+        <li>Elige la categoría de la caja &mdash; Comida, Medicamentos, Rescate, Higiene, Ropa, Mascotas o Bebé. Todavía no eliges paleta: la caja queda &ldquo;sin asignar&rdquo; hasta que el centro de acopio la agrupe en una paleta.</li>
+        <li>Escribe cada producto con su cantidad y toca &ldquo;Generar código y guardar caja&rdquo;. Recibirás un código como <span class="code-chip">WHBK-001-ME</span>.</li>
+        <li>Toca &ldquo;Imprimir etiqueta&rdquo; (incluye un código QR) y pégala en el LADO CORTO de la caja &mdash; no arriba ni en el lado largo.</li>
       </ol>
     </div>
 
     <div class="card">
       <h2><span class="badge">4</span> Corrige una caja tú mismo/a</h2>
-      <p>No hace falta avisarle a nadie para arreglar un error &mdash; toca &ldquo;Ver cajas de esta paleta&rdquo; y busca la caja:</p>
+      <p>No hace falta avisarle a nadie para arreglar un error &mdash; toca &ldquo;Cajas sin asignar&rdquo; o &ldquo;Ver cajas de esta paleta&rdquo; y busca la caja:</p>
       <ul>
-        <li><strong>Editar:</strong> cambia productos, cantidades o categoría de una caja ya guardada.</li>
-        <li><strong>Mover:</strong> si una caja quedó en la paleta equivocada, la manda a la paleta correcta (le genera un código nuevo &mdash; reimprime la etiqueta después).</li>
+        <li><strong>Editar:</strong> cambia productos, cantidades o categoría de una caja ya guardada. Si cambias la categoría, el código se actualiza solo para reflejarla.</li>
+        <li><strong>Mover:</strong> si una caja quedó en la paleta equivocada, la manda a la paleta correcta &mdash; el código no cambia, no hace falta reimprimir la etiqueta.</li>
         <li><strong>Imprimir:</strong> vuelve a imprimir la etiqueta de una caja ya registrada, por si se dañó o se perdió.</li>
         <li><strong>Eliminar:</strong> solo aparece en la última caja que registraste en esa paleta (por ejemplo si la duplicaste sin querer). Si la caja que quieres borrar no es la más reciente, dentro de &ldquo;Editar&rdquo; usa &ldquo;cambiar código&rdquo; para anularla en vez de intentar eliminarla.</li>
       </ul>
@@ -191,6 +191,8 @@
         <div class="faq-a">Antes de volver a registrar la misma caja, toca &ldquo;Ver cajas de esta paleta&rdquo; y revisa si ya aparece con su código. Si ya está ahí, no la registres de nuevo &mdash; evita cajas duplicadas.</div>
         <div class="faq-q" onclick="toggleFaq(this)">¿Varios voluntarios pueden usarla a la vez? <span class="chevron">&#9660;</span></div>
         <div class="faq-a">Sí, sin problema, incluso en centros distintos &mdash; el código de cada caja nunca se repite.</div>
+        <div class="faq-q" onclick="toggleFaq(this)">¿Por qué me pide el código otra vez? <span class="chevron">&#9660;</span></div>
+        <div class="faq-a">El teléfono lo recuerda 24 horas desde el último uso &mdash; después de un día sin usar la app ahí, lo vuelve a pedir por seguridad. No es un error. Si estabas a mitad de escribir una caja, la app la recupera sola apenas vuelves a desbloquear el centro.</div>
         <div class="faq-q" onclick="toggleFaq(this)">¿Qué categoría le pongo a una caja con productos mezclados? <span class="chevron">&#9660;</span></div>
         <div class="faq-a">La de la categoría con MÁS CANTIDAD dentro de esa caja.</div>
       </div>
